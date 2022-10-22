@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import BottomNavigation from "@material-ui/core/BottomNavigation";
-import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import TvIcon from "@material-ui/icons/Tv";
-import MovieIcon from "@material-ui/icons/Movie";
-import SearchIcon from "@material-ui/icons/Search";
-import WhatshotIcon from "@material-ui/icons/Whatshot";
+import { makeStyles } from "@mui/material";
+import {BottomNavigation} from "@mui/icons-material";
+import {BottomNavigationAction} from  "@mui/icons-material";
+import {TvIcon} from "@mui/icons-material";
+import {MovieIcon} from "@mui/icons-material";
+import {SearchIcon} from "@mui/icons-material";
+import {WhatshotIcon} from "@mui/icons-material";
 import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
