@@ -1,123 +1,88 @@
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { useNavigate, useLocation } from "react-router-dom";
-import {
-  IconButton,
-  InputAdornment,
-  Stack,
-  Typography,
-  Alert,
-} from "@mui/material";
+import React, { useState, useContext } from "react";
+import TextField from "@mui/material/TextField";
+import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { LoadingButton } from "@mui/lab";
-import Paper from "@mui/material/Paper";
+import InputAdornment from "@mui/material/InputAdornment";
+import InputLabel from "@mui/material/InputLabel";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import IconButton from "@mui/material/IconButton";
 import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
-import { FormProvider, FTextField, FCheckbox } from "./form/index.js";
-import { useAuth } from "../contexts/AuthContext";
+import AuthConText from "../../contexts/AuthContext"
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 
-export default function Form() {
-  let navigate = useNavigate();
-  let location = useLocation();
-  let auth = useAuth();
-  let from = location.state?.from?.pathname || "/";
-  function onDismiss() {
-    navigate(-1);
-  }
-  const defaultValues = {
-    email: "dinhngocliennhi1999@gmail.com",
-    password: "dinhnhi99",
-    remember: true,
-  };
-  const methods = useForm({ defaultValues });
-  const {
-    handleSubmit,
-    formState: { errors, isSubmitting },
-  } = methods;
+const style = {
+  bgcolor: "background.paper",
+  display: "flex",
+  flexDirection: "column",
+  width: "300px",
+  border: "1px solid",
+  padding: "10px",
+  borderRadius: "5px",
+};
+
+function LoginForm({ callback}) {
+  const [username] = useState("dinhnhi");
+  const [password] = useState("dinhnhi99");
+
+  const auth = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
-  const onSubmit = (data) => {
-    auth.signin(data.email, () => {
-      navigate(from, { replace: true });
-    });
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
   };
+  const handleLogin = () => {
+   
+    auth.singin(username, callback);
+    // ? auth
+   
+
+  };
+  
   return (
-    <Modal
-      open={true}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
-      onBackdropClick={() => onDismiss()}
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        margin: "2rem",
-        outline: "0",
-      }}
-    >
-      <Box>
-        <Paper
-          
-          elevation={8}
-          style={{
-            borderRadius: "20px",
-          }}
-        >
-          <div style={{ padding: "3rem" }}>
-            <Typography
-           
-              color="primary"
-              variant="h3"
-              textAlign="center"
-              mb={3}
-            >
-              Log in
-            </Typography>
-            <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-              <Stack spacing={3} xs={3}>
-                {!!errors.afterSubmit && (
-                  <Alert severity="error">{errors.afterSubmit.message}</Alert>
-                )}
-                <FTextField name="email" label="Email address" />
-                <FTextField
-                  name="password"
-                  label="Password"
-                  type={showPassword ? "text" : "password"}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          color="secondary"
-                          aria-label="toggle password visibility"
-                          onClick={() => setShowPassword(!showPassword)}
-                          onMouseDown={(e) => e.preventDefault()}
-                          edge="end"
-                        >
-                          {showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </Stack>
-              <Stack>
-                <FCheckbox name="remember" label="Remember me" />
-              </Stack>
-              <Stack>
-                <LoadingButton
-                  size="large"
-                  type="submit"
-                  variant="contained"
-                  color="secondary"
-                  loading={isSubmitting}
-                >
-                  Login
-                </LoadingButton>
-              </Stack>
-            </FormProvider>
-          </div>
-        </Paper>
-      </Box>
-    </Modal>
+    <Box sx={style} component="form" gap={4}>
+      <Typography color="secondary" variant="h4" component="span" textAlign="center">
+        Login
+      </Typography>
+      <TextField
+        disabled
+        label="Username"
+        default="user"
+        value={username}
+        sx={{ m: 1 }}
+      />
+      <FormControl sx={{ m: 1 }} variant="outlined">
+        <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+        <OutlinedInput
+          disabled
+          id="outlined-adornment-password"
+          type={showPassword ? "text" : "password"}
+          value={password}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+                edge="end"
+              >
+                {showPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          }
+          label="Password"
+        />
+      </FormControl>
+      <Button
+        onClick={handleLogin}
+        sx={{ m: 1, width: "10ch" }}
+        variant="contained"
+      >
+        Login
+      </Button>
+    </Box>
   );
 }
+
+export default LoginForm;

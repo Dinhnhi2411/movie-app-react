@@ -25,7 +25,7 @@ function CustomPagination({setPage, numOfPages=10}) {
         marginTop:10,
     }}
     >
-        {/* <ThemeProvider> */}
+        {/* <ThemeProvider theme={darkTheme}> */}
     <Pagination
      count={numOfPages}
      onChange={(e)=> handlePageChange(e.target.textContent)}

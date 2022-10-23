@@ -95,6 +95,7 @@ React.useEffect(()=>{
        /> */}
 
         <img
+         
          className="ContentModal__landscape"
          alt={`${content.title} || ${content.name}`}
          height="200px"

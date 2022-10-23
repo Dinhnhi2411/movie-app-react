@@ -6,6 +6,7 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 
 import WhatshotIcon from '@mui/icons-material/Whatshot';
 import MovieIcon from '@mui/icons-material/Movie';
+import StarIcon from "@mui/icons-material/Star";
 
 import LiveTvIcon from '@mui/icons-material/LiveTv';
 import SearchIcon from '@mui/icons-material/Search';
@@ -25,6 +26,10 @@ export default function SimpleBottomNavigation() {
         navigate("/series")
         if(value===3)
         navigate("/search")
+        if(value===4)
+        navigate("/account")
+        if(value===5)
+        navigate("/favorite")
     },[value, navigate])
   return (
     <Box sx={{ width: "100%" }} position="fixed" bottom="0" zIndex="100">
@@ -40,7 +45,6 @@ export default function SimpleBottomNavigation() {
         label="Trending" 
         icon={<WhatshotIcon/>} 
         />
-
 
         <BottomNavigationAction 
        
@@ -60,6 +64,11 @@ export default function SimpleBottomNavigation() {
           <BottomNavigationAction 
         label="Account" 
         icon={<AccountCircle/>} 
+        />
+
+        <BottomNavigationAction 
+        label="Account" 
+        icon={<StarIcon/>} 
         />
       </BottomNavigation>
     </Box>
