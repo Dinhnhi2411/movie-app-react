@@ -42,7 +42,7 @@ React.useEffect(()=>{
 return ()=>{
     setGenres({})
 }
-
+// eslint-disable-next-line
 },[type]);
 
     return (

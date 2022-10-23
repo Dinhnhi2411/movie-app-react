@@ -54,6 +54,9 @@ function SingleContent({
                  <Typography gutterBottom variant="body1" component="div">
                   {`${title}`}
                 </Typography>
+                <Typography gutterBottom variant="body1" component="div">
+                  {`${media_type}`}
+                </Typography>
 
                 <Stack flexDirection="row" justifyContent="flex-end" mt={1}>
                   <Box
