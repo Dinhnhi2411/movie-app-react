@@ -9,6 +9,7 @@ import RecommendIcon from '@mui/icons-material/Recommend';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { CardActionArea } from '@mui/material';
 import "./SingleContent.css"
+import ContentModal from '../ContentModal/ContentModal'
 
 function SingleContent({
         id,
@@ -20,6 +21,7 @@ function SingleContent({
          vote_count
 }) {
   return (
+    <ContentModal media_type={media_type} id={id}>
     <Card className="card" sx={{ width: 220, borderRadius: "5px" }}>
         <CardActionArea>
      <Box
@@ -90,6 +92,7 @@ function SingleContent({
           </Box>
           </CardActionArea>
     </Card>
+    </ContentModal>
   )
 }
 

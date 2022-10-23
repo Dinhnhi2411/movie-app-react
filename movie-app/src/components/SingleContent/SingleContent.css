@@ -11,7 +11,8 @@ box-shadow: 1px 4px 12px 3px #000000;
     filter: brightness(120%);
 }
 .recommend_icon{
-    color:rgb(47, 41, 204)
+    color:rgb(47, 41, 204);
+  
 }
 .favorite_icon{
     color: rgb(190, 22, 50)
