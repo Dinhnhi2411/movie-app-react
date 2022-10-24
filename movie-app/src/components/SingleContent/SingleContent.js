@@ -10,6 +10,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import { CardActionArea } from '@mui/material';
 import "./SingleContent.css"
 import ContentModal from '../ContentModal/ContentModal'
+import StarIcon from "@mui/icons-material/Star";
+
 
 function SingleContent({
         id,
@@ -45,7 +47,7 @@ function SingleContent({
               <Box
                 display="flex"
                 flexDirection="column"
-                justifyContent="space-between"
+                justifyContent="space-around"
                 sx={[
                   {
                     maxHeight: "30%",
@@ -64,9 +66,10 @@ function SingleContent({
                   <Box
                     display="flex"
                     flexDirection="row"
-                    justifyContent="center"
+                    justifyContent="space-around"
                     mr={3}
                   >
+
                     <RecommendIcon
                       className="recommend_icon"
                       fontSize="small"

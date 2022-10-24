@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useNavigate } from "react";
 import TextField from "@mui/material/TextField";
 import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
@@ -8,7 +8,7 @@ import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import IconButton from "@mui/material/IconButton";
 import Box from "@mui/material/Box";
-import AuthConText from "../../contexts/AuthContext"
+import AuthContext from "../../../contexts/AuthContext";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
@@ -23,8 +23,9 @@ const style = {
 };
 
 function LoginForm({ callback}) {
-  const [username] = useState("dinhnhi");
+  const [username] = useState("dinhngocliennhi1999@gmail.com");
   const [password] = useState("dinhnhi99");
+  // const navigate = useNavigate();
 
   const auth = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
@@ -35,13 +36,25 @@ function LoginForm({ callback}) {
   const handleLogin = () => {
    
     auth.singin(username, callback);
-    // ? auth
-   
-
   };
+
+//   //  Login
+//   const handleClickLogin = (e)=>{
+//     navigate("/login");
+//   };
+
+// // logout
+//   const handleClickLogout = (e)=>{
+//     auth.signout(()=>{
+//       navigate("/");
+//     });
+//   };
   
   return (
-    <Box sx={style} component="form" gap={4}>
+    <Box sx={style}
+     component="form" 
+     gap={4} 
+     >
       <Typography color="secondary" variant="h4" component="span" textAlign="center">
         Login
       </Typography>

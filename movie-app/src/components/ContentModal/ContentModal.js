@@ -34,12 +34,9 @@ export default function ContentModal({children, media_type, id}) {
   const [content, setContent] = useState();
   const [video, setVideo] = useState();
 
-
   const handleOpen = () => setOpen(true);
 
-
   const handleClose = () => setOpen(false);
-
 
   const fetchData = async () => {
     const { data } = await axios.get(
@@ -47,7 +44,7 @@ export default function ContentModal({children, media_type, id}) {
     );
 
     setContent(data);
-    console.log(data);
+    // console.log(data);
   };
 
   const fetchVideo = async () => {
@@ -56,7 +53,7 @@ export default function ContentModal({children, media_type, id}) {
     );
 
     setVideo(data.results[0]?.key);
-    console.log("video",data)
+    // console.log("video",data)
   }
 React.useEffect(()=>{
     fetchData();
@@ -65,11 +62,11 @@ React.useEffect(()=>{
 },[media_type, id])
 
 
-
   
   return (
     <>
       <Button onClick={handleOpen}>{children}</Button>
+      
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -81,19 +78,12 @@ React.useEffect(()=>{
           timeout: 500,
         }}
       >
+        {/* <StarIcon/> */}
         <Fade in={open}>
             {content && (
  
         <Box sx={style}>
         <Box className="ContentModal">
-        {/* <img
-         className="ContentModal_portrait"
-         alt={`${content.title} || ${content.name}`}
-         height="500px"
-         src={`https://image.tmdb.org/t/p/w500/${content.poster_path}`}
-         style={{ borderRadius: "10px" }}
-       /> */}
-
         <img
          
          className="ContentModal__landscape"
@@ -104,6 +94,14 @@ React.useEffect(()=>{
        />
 
        <Typography className="ContentModal__about">
+       <StarIcon
+                    className="star_icon"
+                    fontSize="large"
+                    sx={{
+                      backgroundColor: "rgb(255,77,106)",
+                      right: "30px",
+                    }}
+                    />
         <span className="ContentModal__title">
             {content.name || content.title} (
                 {(

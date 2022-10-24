@@ -48,7 +48,7 @@ import {
               setMovied(res.data.results)
               setNumOfPages(res.total_pages);
 
-              console.log("data",res.data)
+              // console.log("data",res.data)
               setLoading(false);
               }
             } catch (e) {

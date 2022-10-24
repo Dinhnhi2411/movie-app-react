@@ -14,7 +14,7 @@ const Trending =() => {
         (
             `https://api.themoviedb.org/3/trending/all/week?api_key=f3d8e4feb56f8aa83c7956ede155fe74&page=${page}`
         );
-        console.log("data", data)
+        // console.log("data", data)
         setContent(data.results);
     };
     React.useEffect(()=>{
